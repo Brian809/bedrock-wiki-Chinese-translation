@@ -1,7 +1,7 @@
 # Bedrock Wiki
 
 ## 关于本仓库的说明
-该仓库正在进行[Bedrock Wiki](https://wiki.bedrock.dev/)的翻译，翻译内容请在 `docs/zh` 目录下。
+该仓库正在进行[Bedrock Wiki](https://wiki.bedrock.dev/)的翻译，翻译内容请在 `docs/zh` 目录下查看。
 
 大部分内容为LLM生成，还需检查拼写和文法（进行中）。
 
