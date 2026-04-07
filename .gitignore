@@ -7,3 +7,4 @@ docs/.vitepress/dist
 docs/public/llms.txt
 .opencode
 .sisyphus
+.vscode
