@@ -2,15 +2,24 @@ name: Build and Deploy to Vercel
 
 on:
   push:
-    branches: [main, master, dev]
+    branches: [main, master, dev, vercel-deploy]
   pull_request:
     branches: [main, master]
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive  # 初始化 git submodule
+          fetch-depth: 0  # 获取完整历史
+
+      - name: Initialize submodules
+        run: |
+          git submodule update --init --recursive
+          ls -la examples/
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -28,16 +37,14 @@ jobs:
 
       - name: Deploy to Vercel (Production)
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-        run: npx vercel --yes --prod
+        run: npx vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Deploy to Vercel (Preview)
         if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master'
-        run: npx vercel --yes
+        run: npx vercel deploy --yes --token=${{ secrets.VERCEL_TOKEN }}
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}

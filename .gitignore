@@ -8,3 +8,5 @@ docs/public/llms.txt
 .opencode
 .sisyphus
 .vscode
+.vercel
+.env*.local
