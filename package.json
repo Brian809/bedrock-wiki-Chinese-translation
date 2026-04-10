@@ -7,6 +7,7 @@
     "dev": "vitepress dev docs",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=6144 vitepress build docs",
     "fastbuild": "cross-env FAST_BUILD=true NODE_OPTIONS=--max-old-space-size=8192 vitepress build docs",
+    "vercel-build": "cross-env FAST_BUILD=true NODE_OPTIONS=--max-old-space-size=4096 vitepress build docs",
     "preview": "vitepress preview docs",
     "lint": "eslint docs/.vitepress"
   },

@@ -62,6 +62,13 @@ export default defineWikiConfig({
       "/entities/vuc-full",
       "/entities/vusr-full",
       "/text/fonts",
+      "/items/item-catalog",
+      "/blocks/vanilla-block-models",
+      "/blocks/vanilla-voxel-shapes",
+      "/blocks/vanilla-block-tags",
+      "/items/vanilla-item-tags",
+      "/items/vanilla-item-groups",
+      "/items/vanilla-usage-items",
     ],
   },
 });
